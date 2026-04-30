@@ -1,0 +1,104 @@
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ── Hover states ─────────────────────────────────────────────────────── */
+
+/* Quantity stepper container */
+.qty-stepper:hover {
+  border-color: #1a1a1a !important;
+}
+
+/* Quantity +/- buttons */
+.qty-btn:hover {
+  background: #f0f0f0;
+  border-radius: 50%;
+}
+
+/* Frequency radio option buttons */
+.freq-option:hover {
+  border-color: #1a1a1a !important;
+  background: #fafafa !important;
+}
+
+/* Add to cart (+) circle button */
+.add-btn:hover {
+  background: #f0f0f0 !important;
+  transform: scale(1.08);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.add-btn.added:hover {
+  background: #7a8f18 !important;
+}
+
+/* Proceed to checkout */
+.checkout-btn:hover {
+  background: #f5f5f5 !important;
+}
+
+/* Buy with Shop Pay */
+.shop-pay-btn:hover {
+  background: #3d1fb8 !important;
+}
+
+/* Carousel pagination chevrons */
+.carousel-arrow:hover {
+  border-color: #1a1a1a !important;
+  background: #f5f5f5 !important;
+}
+
+/* Shipping progress bar pulse on hover */
+.ship-progress:hover .ship-fill {
+  filter: brightness(1.08);
+}
+
+/* Scrollable cart items area */
+.cart-items-scroll {
+  height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.cart-items-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.cart-items-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Polaris Listbox option spacing overrides */
+.Polaris-Listbox {
+  padding: 8px !important;
+}
+.Polaris-Listbox-Option {
+  padding: 4px 0 !important;
+}
+.Polaris-Listbox-Option__Label {
+  padding: 12px !important;
+}
+.Polaris-Listbox-Option:first-child {
+  padding-top: 0 !important;
+}
+.Polaris-Listbox-Option:last-child {
+  padding-bottom: 0 !important;
+}
