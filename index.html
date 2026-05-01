@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaidali | Intro Call</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="magic-grid" aria-hidden="true"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+    <div class="progress" aria-hidden="true"><span></span></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Zaidali intro home">Zaidali</a>
+      <nav aria-label="Intro call sections">
+        <a href="#story">Story</a>
+        <a href="#work">Work</a>
+        <a href="#systems">Systems</a>
+        <a href="#ai">AI</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Toggle contrast mode">
+        <span></span>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Intro call template</p>
+          <h1>Zaidali <span class="aurora-text">(Zaid)</span></h1>
+          <p class="role">Product designer with 7+ years of turning ambiguous problems in complex systems into simple solutions.</p>
+          <div class="hero-actions">
+            <a class="button primary shimmer" href="#work">Explore the work</a>
+            <a class="button ghost" href="#story">Meet the human</a>
+          </div>
+        </div>
+        <div class="hero-visual reveal magic-card border-beam" data-tilt>
+          <img src="assets/site/hero-portrait.jpg" alt="Zaid standing in a misty mountain landscape" />
+          <div class="floating-card card-one">Owner mindset</div>
+          <div class="floating-card card-two">Structure in ambiguity</div>
+          <div class="floating-card card-three">Humility above all</div>
+        </div>
+      </section>
+
+      <section class="outline-strip" aria-label="Presentation outline">
+        <div class="marquee">
+          <span>About me</span>
+          <span>Highlights</span>
+          <span>Complexity</span>
+          <span>Guided by data</span>
+          <span>Design systems</span>
+          <span>AI workflow</span>
+          <span>Brands</span>
+          <span aria-hidden="true">About me</span>
+          <span aria-hidden="true">Highlights</span>
+          <span aria-hidden="true">Complexity</span>
+          <span aria-hidden="true">Guided by data</span>
+          <span aria-hidden="true">Design systems</span>
+          <span aria-hidden="true">AI workflow</span>
+          <span aria-hidden="true">Brands</span>
+        </div>
+      </section>
+
+      <section id="story" class="story section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">About me</p>
+          <h2>My story, in motion.</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-card reveal magic-card shine-border" data-tilt>
+            <img src="assets/site/mumbai.jpg" alt="Mumbai skyline" />
+            <span>Born and raised</span>
+            <h3>Mumbai, India</h3>
+          </article>
+          <article class="timeline-card reveal magic-card shine-border" data-tilt>
+            <img src="assets/site/canada.jpg" alt="Zaid in snowy Canada" />
+            <span>2018</span>
+            <h3>Immigrated to Canada</h3>
+          </article>
+          <article class="timeline-card reveal magic-card shine-border" data-tilt>
+            <img src="assets/site/mountain.jpg" alt="A dramatic mountain ridge" />
+            <span>2022</span>
+            <h3>Co-founded Rhizhome</h3>
+          </article>
+        </div>
+        <div class="interests reveal">
+          <button type="button" data-interest="reading">Reading</button>
+          <button type="button" data-interest="learning">Learning</button>
+          <button type="button" data-interest="doing">Doing</button>
+          <button type="button" data-interest="eating">Eating</button>
+          <p id="interest-output">Pride &amp; Prejudice</p>
+        </div>
+      </section>
+
+      <section id="work" class="work section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Highlights</p>
+          <h2>Identifying and resolving complexity.</h2>
+        </div>
+        <div class="complexity-lab reveal">
+          <div class="lab-copy magic-card shine-border">
+            <span class="tag">Recharge</span>
+            <h3>From dense configuration to guided setup.</h3>
+            <p>Pull the handle to move from the raw canvas of settings into a clearer wizard flow with smart defaults, review states, and visible progress.</p>
+          </div>
+          <div class="compare magic-card border-beam" data-compare>
+            <img src="assets/site/complexity-canvas.jpg" alt="Complex product configuration canvas" />
+            <div class="compare-after">
+              <img src="assets/site/wizard-ui.jpg" alt="Guided step-by-step product setup wizard" />
+            </div>
+            <div class="compare-handle" aria-hidden="true">
+              <div class="compare-grip">⟺</div>
+            </div>
+            <div class="compare-label label-after" aria-hidden="true">After</div>
+            <div class="compare-label label-before" aria-hidden="true">Before</div>
+            <input aria-label="Compare complexity and guided wizard" type="range" min="5" max="95" value="54" />
+          </div>
+        </div>
+
+        <div class="case-grid">
+          <article class="case-card reveal magic-card active" data-case="0">
+            <span>01</span>
+            <h3>Step-by-step wizard</h3>
+            <p>Setup guidance breaks a heavy product job into small, confident decisions.</p>
+          </article>
+          <article class="case-card reveal magic-card" data-case="1">
+            <span>02</span>
+            <h3>Preset smart defaults</h3>
+            <p>Useful defaults reduce blank-state anxiety and keep merchants moving.</p>
+          </article>
+          <article class="case-card reveal magic-card" data-case="2">
+            <span>03</span>
+            <h3>Guided by data</h3>
+            <p>Same-session deactivations dropped when the setup experience gave clearer affordances.</p>
+          </article>
+        </div>
+        <div class="showcase reveal magic-card shine-border">
+          <img id="case-image" src="assets/site/recharge-dashboard.jpg" alt="Recharge dashboard case study visual" />
+          <div>
+            <p id="case-kicker">Owner mindset</p>
+            <h3 id="case-title">Bring structure to ambiguous product spaces.</h3>
+          </div>
+        </div>
+      </section>
+
+      <section class="metrics section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Guided by data</p>
+          <h2>Signals that changed the shape of the work.</h2>
+        </div>
+        <div class="metric-board reveal magic-card border-beam">
+          <div class="metric-spotlight" aria-hidden="true">
+            <span id="metric-ticker">4.2x</span>
+          </div>
+          <img src="assets/site/data-chart.jpg" alt="Chart showing same-session deactivation differences" />
+          <div class="metric-controls" role="group" aria-label="Metric filters">
+            <button class="active" type="button" data-metric="4.2x">Upsell</button>
+            <button type="button" data-metric="2.2x">Cross-sell</button>
+            <button type="button" data-metric="0x">Subscription widget</button>
+          </div>
+          <p id="metric-readout">4.2x higher same-session deactivation signal exposed where the wizard needed more clarity.</p>
+        </div>
+      </section>
+
+      <section id="systems" class="systems section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Design system 101</p>
+          <h2>Spark 2.0 made decisions reusable.</h2>
+        </div>
+        <div class="system-layout">
+          <div class="system-visual reveal magic-card border-beam" data-tilt>
+            <img src="assets/site/spark-system.jpg" alt="Spark 2.0 Recharge design system overview" />
+          </div>
+          <div class="token-panel reveal magic-card shine-border">
+            <img src="assets/site/tokens.jpg" alt="Design token documentation and color primitives" />
+            <p>Component decisions, token rules, and documentation turn design judgment into shared product velocity.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="ai" class="ai section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">AI-powered workflow</p>
+          <h2>A faster loop for research, writing, prototyping, and critique.</h2>
+        </div>
+        <div class="workflow reveal" aria-label="AI workflow tools">
+          <button type="button" class="tool-card magic-card active" data-tool="Claude">
+            <img src="assets/site/claude.jpg" alt="Claude logo" />
+            <span>Reason</span>
+          </button>
+          <button type="button" class="tool-card magic-card" data-tool="Stitch">
+            <img src="assets/site/stitch.jpg" alt="Stitch logo" />
+            <span>Prototype</span>
+          </button>
+          <button type="button" class="tool-card magic-card" data-tool="Cursor">
+            <img src="assets/site/cursor.jpg" alt="Cursor logo" />
+            <span>Build</span>
+          </button>
+        </div>
+        <p class="workflow-output reveal" id="workflow-output">Claude helps turn messy inputs into sharper framing before design energy gets expensive.</p>
+      </section>
+
+      <section class="brands section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Brands</p>
+          <h2>Solutions I’ve designed have supported recognizable teams.</h2>
+        </div>
+        <div class="brand-wall reveal">
+          <img src="assets/site/shopify.jpg" alt="Shopify logo" />
+          <img src="assets/site/amazon.jpg" alt="Amazon logo" />
+          <img src="assets/site/costco.jpg" alt="Costco logo" />
+          <img src="assets/site/dsac.jpg" alt="Designers Society of Canada logo" />
+        </div>
+      </section>
+
+      <section class="closing section">
+        <div class="closing-card reveal magic-card border-beam">
+          <p class="eyebrow">Thank you</p>
+          <h2>Let’s make ambiguous things feel inevitable.</h2>
+          <a class="button primary shimmer" href="#top">Back to top</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

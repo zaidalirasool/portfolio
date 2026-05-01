@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "magicuidesign-mcp": {
+      "command": "npx",
+      "args": ["-y", "@magicuidesign/mcp@latest"]
+    },
+    "framer-mcp": {
+      "url": "https://mcp.unframer.co/mcp?id=d3a7c424fd8f7463c615c239e0fd68377f769d08d4047e1a7c73f0152ed0ec7d&secret=JlaUHsWp4kOSZ7aEekRZCTyVIR0QKH8u"
+    }
+  }
+}
