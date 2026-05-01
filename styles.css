@@ -102,22 +102,92 @@ button {
 .magic-card {
   position: relative;
   isolation: isolate;
+  transition: box-shadow 0.3s ease;
 }
 
+/* Liquid-glass hover lens (replaces flat radial highlight) */
 .magic-card::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: radial-gradient(420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.22), transparent 42%);
-  opacity: 0;
-  transition: opacity 220ms ease;
   z-index: 1;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.2);
+  background-image: radial-gradient(
+    520px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.45),
+    rgba(255, 255, 255, 0.16) 38%,
+    transparent 56%
+  );
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .magic-card:hover::before {
   opacity: 1;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.42);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.magic-card:hover {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.22);
+}
+
+/* Optional utility: apply class for the same glass on any block */
+.apple-glass {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+.apple-glass:hover {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  transform: translateY(-2px);
+}
+
+body.contrast .magic-card::before {
+  background-color: rgba(255, 255, 255, 0.08);
+  background-image: radial-gradient(
+    520px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.06) 40%,
+    transparent 55%
+  );
+  border-color: rgba(255, 247, 232, 0.18);
+}
+
+body.contrast .magic-card:hover::before {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 247, 232, 0.28);
+  box-shadow: 0 8px 28px 0 rgba(0, 0, 0, 0.45);
+}
+
+body.contrast .magic-card:hover {
+  box-shadow: 0 8px 28px 0 rgba(0, 0, 0, 0.35);
+}
+
+body.contrast .apple-glass {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 247, 232, 0.2);
+}
+
+body.contrast .apple-glass:hover {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 28px 0 rgba(0, 0, 0, 0.45);
 }
 
 .shine-border::after,
@@ -972,6 +1042,20 @@ h3 {
 
   .cursor-glow {
     display: none;
+  }
+
+  .magic-card::before {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    opacity: 0 !important;
+  }
+
+  .magic-card:hover {
+    box-shadow: none;
+  }
+
+  .apple-glass:hover {
+    transform: none;
   }
 }
 

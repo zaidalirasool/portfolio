@@ -25,11 +25,27 @@ function CartStyles() {
       .rc-checkout-btn:hover { background:#f5f5f5 !important; }
       .rc-shoppay-btn:hover { background:#3d1fb8 !important; }
       .rc-arrow:hover { border-color:#1a1a1a !important; background:#f5f5f5 !important; }
+      @keyframes rc-item-enter {
+        0%   { opacity:0; max-height:0; transform:translateY(-8px); }
+        100% { opacity:1; max-height:500px; transform:translateY(0); }
+      }
+      .rc-item-wrap { overflow:hidden; animation: rc-item-enter 0.38s cubic-bezier(0.4,0,0.2,1) forwards; }
     `
         document.head.appendChild(el)
     }, [])
     return null
 }
+
+// ── Shop Pay logo (official SVG, white) ──────────────────────────────────
+const ShopPayLogo = () => (
+    <svg width="683" height="164" viewBox="0 0 683 164" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ height: "22px", width: "auto" }} aria-label="Shop Pay">
+        <path fillRule="evenodd" clipRule="evenodd" d="M454.942 0C441.175 0 430.015 11.1602 430.015 24.927V138.295C430.015 152.062 441.175 163.222 454.942 163.222H658.072C671.839 163.222 682.999 152.062 682.999 138.295V24.927C682.999 11.1602 671.839 0 658.072 0H454.942ZM490.023 113.902V85.1661H508.1C524.616 85.1661 533.399 75.9057 533.399 61.872C533.399 47.8383 524.616 39.4371 508.1 39.4371H478.376V113.902H490.023ZM490.023 50.5114H505.427C516.119 50.5114 521.37 54.9029 521.37 62.2539C521.37 69.6049 516.31 73.9964 505.904 73.9964H490.023V50.5114ZM553.933 115.429C562.811 115.429 568.635 111.515 571.308 104.832C572.071 112.279 576.558 116.098 586.296 113.52L586.391 105.596C582.477 105.978 581.714 104.546 581.714 100.441V80.9655C581.714 69.5094 574.172 62.7312 560.233 62.7312C546.486 62.7312 538.562 69.6049 538.562 81.2519H549.255C549.255 75.7148 553.169 72.3734 560.042 72.3734C567.298 72.3734 570.639 75.5239 570.544 80.9655V83.4477L558.229 84.7842C544.386 86.3117 536.748 91.5624 536.748 100.727C536.748 108.269 542.095 115.429 553.933 115.429ZM556.319 106.837C550.305 106.837 547.918 103.591 547.918 100.345C547.918 95.9539 552.882 93.9491 562.62 92.8035L570.257 91.9443C569.78 100.345 564.148 106.837 556.319 106.837ZM621.754 117.625C616.885 129.463 609.057 132.995 596.837 132.995H591.586V123.258H597.219C603.902 123.258 607.148 121.157 610.68 115.143L589.009 64.2587H601.038L616.504 101.396L630.251 64.2587H641.993L621.754 117.625Z" fill="white"/>
+        <path d="M57.3945 71.7445C41.4471 68.2852 34.3427 66.9315 34.3427 60.7862C34.3427 55.0063 39.1506 52.127 48.7662 52.127C57.2228 52.127 63.4043 55.8228 67.9545 63.0638C68.2979 63.6225 69.0062 63.8159 69.5857 63.5151L87.5292 54.4476C88.1731 54.1253 88.4092 53.3088 88.0443 52.6857C80.5965 39.7721 66.8384 32.7029 48.7233 32.7029C24.9203 32.7029 10.132 44.4347 10.132 63.0853C10.132 82.8962 28.1398 87.9027 44.1086 91.3621C60.0774 94.8215 67.2033 96.1751 67.2033 102.32C67.2033 108.466 62.0091 111.366 51.6423 111.366C42.0696 111.366 34.9652 106.983 30.6725 98.4742C30.3505 97.8511 29.5993 97.5933 28.9769 97.9156L11.0764 106.79C10.4539 107.112 10.1964 107.864 10.5183 108.509C17.6227 122.797 32.1964 130.833 51.6637 130.833C76.454 130.833 91.4355 119.295 91.4355 100.064C91.4355 80.8335 73.3418 75.2469 57.3945 71.7875V71.7445Z" fill="white"/>
+        <path d="M153.551 32.7032C143.377 32.7032 134.384 36.3129 127.924 42.7375C127.516 43.1243 126.85 42.845 126.85 42.2863V1.26785C126.85 0.558781 126.292 0.00012207 125.584 0.00012207H103.133C102.425 0.00012207 101.867 0.558781 101.867 1.26785V128.578C101.867 129.287 102.425 129.845 103.133 129.845H125.584C126.292 129.845 126.85 129.287 126.85 128.578V72.7332C126.85 61.9468 135.114 53.6743 146.253 53.6743C157.393 53.6743 165.463 61.7749 165.463 72.7332V128.578C165.463 129.287 166.021 129.845 166.729 129.845H189.18C189.889 129.845 190.447 129.287 190.447 128.578V72.7332C190.447 49.2695 175.079 32.7246 153.551 32.7246V32.7032Z" fill="white"/>
+        <path d="M235.991 29.0505C223.8 29.0505 212.381 32.7893 204.182 38.1825C203.624 38.5477 203.431 39.2998 203.774 39.8799L213.669 56.7901C214.034 57.3917 214.806 57.6066 215.407 57.2413C221.632 53.4811 228.758 51.5258 236.034 51.5688C255.63 51.5688 270.032 65.4063 270.032 83.6917C270.032 99.2697 258.506 110.808 243.889 110.808C231.977 110.808 223.714 103.868 223.714 94.0698C223.714 88.4618 226.096 83.8636 232.299 80.619C232.943 80.2753 233.179 79.4802 232.793 78.8571L223.456 63.0428C223.156 62.5271 222.512 62.2907 221.932 62.5056C209.419 67.1468 200.641 78.3199 200.641 93.3178C200.641 116.008 218.691 132.94 243.868 132.94C273.273 132.94 294.414 112.549 294.414 83.3049C294.414 51.9556 269.817 29.0505 235.991 29.0505Z" fill="white"/>
+        <path d="M360.069 32.5311C348.714 32.5311 338.584 36.7211 331.179 44.1126C330.771 44.5208 330.106 44.22 330.106 43.6613V34.7658C330.106 34.0567 329.548 33.498 328.839 33.498H306.968C306.26 33.498 305.702 34.0567 305.702 34.7658V161.882C305.702 162.591 306.26 163.15 306.968 163.15H329.419C330.127 163.15 330.685 162.591 330.685 161.882V120.198C330.685 119.639 331.351 119.36 331.758 119.725C339.142 126.601 348.908 130.619 360.09 130.619C386.426 130.619 406.966 109.282 406.966 81.5642C406.966 53.8461 386.404 32.5096 360.09 32.5096L360.069 32.5311ZM355.84 109.089C340.859 109.089 329.505 97.1637 329.505 81.3923C329.505 65.6209 340.837 53.6957 355.84 53.6957C370.843 53.6957 382.155 65.4275 382.155 81.3923C382.155 97.357 370.994 109.089 355.819 109.089H355.84Z" fill="white"/>
+    </svg>
+)
 
 // ── Icons ───────────────────────────────────────────────────────────────
 const MinusIcon = () => (
@@ -96,8 +112,8 @@ function TieredProgress({ total }: { total: number }) {
     const t1Done = total >= TIERS[0].threshold
     const t2Done = total >= TIERS[1].threshold
     const pct = t2Done ? 100 : Math.min((total / TIER_MAX) * 100, 100)
-    const t1Pos = (TIERS[0].threshold / TIER_MAX) * 100
-    const t2Pos = (TIERS[1].threshold / TIER_MAX) * 100
+    const t1Pos = (TIERS[0].threshold / TIER_MAX) * 100  // 33.3%
+    const t2Pos = (TIERS[1].threshold / TIER_MAX) * 100  // 66.7%
 
     let message: React.ReactNode
     if (!t1Done) {
@@ -105,7 +121,7 @@ function TieredProgress({ total }: { total: number }) {
         message = <>Spend <strong>${rem}</strong> more for a free gift 🎁</>
     } else if (!t2Done) {
         const rem = (TIERS[1].threshold - total).toFixed(2)
-        message = <>Spend <strong>${rem}</strong> more for free shipping</>
+        message = <>Spend <strong>${rem}</strong> more for free shipping 🚚</>
     } else {
         message = <>🎉 You've unlocked free shipping!</>
     }
@@ -122,12 +138,12 @@ function TieredProgress({ total }: { total: number }) {
 
     return (
         <div style={{ border: "1.5px solid #8a9e1a", borderRadius: "10px", padding: "12px", marginBottom: "16px", background: "#f9fce8", direction: "ltr" }}>
-            <p style={{ margin: "0 0 12px", fontSize: "13px", fontWeight: "500", color: "#2d2d2d", textAlign: "center" }}>
+            <p style={{ margin: "0 0 12px", fontSize: "13px", fontWeight: "500", color: "#2d2d2d", textAlign: "center", height: "20px", lineHeight: "20px", overflow: "hidden", whiteSpace: "nowrap" }}>
                 {message}
             </p>
             <div style={{ position: "relative", height: `${MARKER}px`, margin: "0" }}>
                 <div style={{ position: "absolute", left: 0, right: 0, top: "50%", transform: "translateY(-50%)", height: "8px", background: "#e2e8c0", borderRadius: "4px" }}>
-                    <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${pct}%`, background: "#8a9e1a", borderRadius: "4px", transition: "width 0.4s ease" }} />
+                    <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${pct}%`, background: "#8a9e1a", borderRadius: "4px", transition: "width 0.6s ease" }} />
                 </div>
                 <div style={{ ...markerStyle(t1Done), left: `${t1Pos}%` }}>
                     <div style={{ marginBottom: "3px" }}><GiftBoxIcon color={t1Done ? "white" : "#bbb"} /></div>
@@ -220,8 +236,9 @@ function QuantitySelector({ qty, onDecrement, onIncrement }: { qty: number; onDe
 
 const CONFETTI_COLORS = ["#8a9e1a", "#c5d92e", "#f4c430", "#e8603c", "#5b9bd5", "#b07fd4", "#f28b82"]
 
-function CartItem({ item, onQtyChange, onSubscribeToggle, onUnsubscribe, onFrequencyChange }: {
+function CartItem({ item, isNew, onQtyChange, onSubscribeToggle, onUnsubscribe, onFrequencyChange }: {
     item: CartItemData
+    isNew?: boolean
     onQtyChange: (id: number, delta: number) => void
     onSubscribeToggle: (id: number) => void
     onUnsubscribe: (id: number) => void
@@ -253,6 +270,7 @@ function CartItem({ item, onQtyChange, onSubscribeToggle, onUnsubscribe, onFrequ
     }
 
     return (
+        <div className={isNew ? "rc-item-wrap" : ""}>
         <div style={{ padding: "16px 0" }}>
             <div style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
                 <div style={{
@@ -325,7 +343,7 @@ function CartItem({ item, onQtyChange, onSubscribeToggle, onUnsubscribe, onFrequ
                         borderBottom: item.isSubscription ? "1px solid #f0f0f0" : "1.5px solid #d0d0d0",
                         background: "white", transition: "border-radius 0.15s",
                     }}>
-                        <span style={{ fontSize: "14px", fontWeight: "500", color: "#1a1a1a" }}>Subscribe & Save up to 20%</span>
+                        <span style={{ fontSize: "14px", fontWeight: "500", color: "#1a1a1a" }}>Subscribe & save up to 20%</span>
                         <Toggle on={item.isSubscription} onToggle={handleToggle} />
                     </div>
 
@@ -367,6 +385,7 @@ function CartItem({ item, onQtyChange, onSubscribeToggle, onUnsubscribe, onFrequ
                     )}
                 </div>
             )}
+        </div>
         </div>
     )
 }
@@ -580,35 +599,41 @@ interface Props {
     decafBlendImage: string
     singleOriginImage: string
     worldAtlasImage: string
-    shopPayImage: string
 }
 
-export default function RechargeCart({ signatureBlendImage, decafBlendImage, singleOriginImage, worldAtlasImage, shopPayImage }: Props) {
+export default function RechargeCart({ signatureBlendImage, decafBlendImage, singleOriginImage, worldAtlasImage }: Props) {
     const initialItems: CartItemData[] = [
         {
             id: 1, name: "Signature Blend", size: "12oz (340g)", price: 24.95,
             qty: 1, isSubscription: false, subscriptionLabel: "Subscribe & Save 15% Today",
             frequency: "every 1 month", canUnsubscribe: true,
-            image: signatureBlendImage || "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=200&q=80",
+            image: signatureBlendImage || "https://i.imgur.com/6AZR7d6.jpeg",
         },
     ]
 
     const recommendedItems: RecItem[] = [
-        { id: 3, name: "Decaf Blend", size: "12oz (340g)", price: 24.95, image: decafBlendImage || "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=200&q=80" },
-        { id: 4, name: "Single Origin", size: "12oz (340g)", price: 21.21, image: singleOriginImage || "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=80" },
+        { id: 3, name: "Decaf Blend", size: "12oz (340g)", price: 24.95, image: decafBlendImage || "https://i.imgur.com/Bjcv82j.jpeg" },
+        { id: 4, name: "Single Origin", size: "12oz (340g)", price: 21.21, image: singleOriginImage || "https://i.imgur.com/f5FmFQs.jpeg" },
     ]
 
     const TOTE_BAG_ITEM: CartItemData = {
         id: 5, name: "The World Atlas of Coffee", size: "Free gift 🎁", price: 0, originalPrice: 24.95,
         qty: 1, isSubscription: false, frequency: "every 1 month",
         canUnsubscribe: false,
-        image: worldAtlasImage || "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=200&q=80",
+        image: worldAtlasImage || "https://i.imgur.com/k3evBTj.jpeg",
         isToteBag: true,
     }
 
     const [items, setItems] = useState<CartItemData[]>(initialItems)
     const [recommendedAdded, setRecommendedAdded] = useState<Record<number, boolean>>({})
     const [showPostPurchase, setShowPostPurchase] = useState(false)
+
+    // Track which item ids have already been rendered so we only animate truly new items.
+    // Initialized with the ids of the initial items so they never get the enter animation.
+    const seenItemIdsRef = useRef(new Set<number>(initialItems.map(i => i.id)))
+    useEffect(() => {
+        items.forEach(i => seenItemIdsRef.current.add(i.id))
+    }, [items])
 
     const handleQtyChange = (id: number, delta: number) => {
         setItems(prev => {
@@ -656,10 +681,10 @@ export default function RechargeCart({ signatureBlendImage, decafBlendImage, sin
     const total = subtotal + shipping
 
     return (
-        <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", width: "472px", height: "944px", direction: "ltr" }}>
+        <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", display: "inline-block", direction: "ltr" }}>
             <CartStyles />
-            <div style={{ background: "#c5d92e", borderRadius: "24px", padding: "32px 80px", width: "100%", height: "100%", boxSizing: "border-box" }}>
-                <div style={{ background: "white", borderRadius: "16px", padding: "24px", boxShadow: "0 4px 12px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column", height: "100%" }}>
+            <div style={{ background: "#c5d92e", borderRadius: "8px", padding: "32px 196px" }}>
+                <div style={{ background: "white", borderRadius: "16px", padding: "24px", boxShadow: "0 4px 12px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column", width: "472px", height: "944px" }}>
                     <h1 style={{ margin: "0 0 16px", fontSize: "20px", fontWeight: "800", color: "#1a1a1a", flexShrink: 0 }}>Your shopping cart</h1>
                     <div style={{ flexShrink: 0 }}>
                         <TieredProgress total={subtotal} />
@@ -670,6 +695,7 @@ export default function RechargeCart({ signatureBlendImage, decafBlendImage, sin
                                 <CartItem
                                     key={item.id}
                                     item={item}
+                                    isNew={!seenItemIdsRef.current.has(item.id)}
                                     onQtyChange={handleQtyChange}
                                     onSubscribeToggle={handleSubscribeToggle}
                                     onUnsubscribe={handleUnsubscribe}
@@ -706,10 +732,7 @@ export default function RechargeCart({ signatureBlendImage, decafBlendImage, sin
                             className="rc-shoppay-btn"
                             style={{ width: "100%", padding: "14px", borderRadius: "12px", border: "none", background: "#5a31f4", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
                         >
-                            {shopPayImage
-                                ? <img src={shopPayImage} alt="Shop Pay" style={{ height: "20px", display: "block" }} />
-                                : <span style={{ color: "white", fontSize: "15px", fontWeight: "700", letterSpacing: "0.5px" }}>Shop Pay</span>
-                            }
+                            <ShopPayLogo />
                         </button>
                     </div>
                 </div>
@@ -735,9 +758,5 @@ addPropertyControls(RechargeCart, {
     worldAtlasImage: {
         type: ControlType.Image,
         title: "World Atlas (gift)",
-    },
-    shopPayImage: {
-        type: ControlType.Image,
-        title: "Shop Pay Logo",
     },
 })
