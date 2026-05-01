@@ -456,18 +456,17 @@ function CartItem({ item, onQtyChange, onSubscribeToggle, onUnsubscribe, onFrequ
 
 function RecommendedCarousel({ items, addedMap, onAdd }) {
   const [index, setIndex] = useState(0);
-  const containerRef = useRef(null);
+  const outerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
 
   useEffect(() => {
-    const measure = () => {
-      if (containerRef.current) {
-        setContainerWidth(containerRef.current.parentElement?.offsetWidth || 0);
-      }
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    if (!outerRef.current) return;
+    const el = outerRef.current;
+    const update = () => setContainerWidth(el.offsetWidth);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
   }, []);
 
   // Clamp index when items shrink
@@ -482,7 +481,7 @@ function RecommendedCarousel({ items, addedMap, onAdd }) {
   const translateX = -(index * (cardWidth + gap));
 
   return (
-    <div>
+    <div ref={outerRef}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "8px" }}>
         <p style={{ margin: 0, fontSize: "13px", fontWeight: "600", color: "#555" }}>Recommended for you:</p>
         <div style={{ display: "flex", gap: "4px" }}>
@@ -508,7 +507,7 @@ function RecommendedCarousel({ items, addedMap, onAdd }) {
         </div>
       </div>
 
-      <div ref={containerRef} style={{ overflow: "hidden", marginRight: `-${CARD_PADDING}px` }}>
+      <div style={{ overflow: "hidden", marginRight: `-${CARD_PADDING}px` }}>
         <div style={{
           display: "flex",
           gap: `${gap}px`,
