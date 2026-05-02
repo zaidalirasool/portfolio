@@ -315,8 +315,7 @@ export default function LoyaltyTiersAnimated({
                                 gap: "14px",
                                 marginBottom: i < ORDERS.length - 1 ? "10px" : "0",
                                 opacity: isActive ? 1 : 0.28,
-                                transform: `translateX(${isActive ? 0 : -5}px)`,
-                                transition: `opacity ${stepDuration * 0.5}ms ease, transform ${stepDuration * 0.5}ms ease`,
+                                transition: `opacity ${stepDuration * 0.5}ms ease`,
                             }}
                         >
                             <div
@@ -337,6 +336,8 @@ export default function LoyaltyTiersAnimated({
 
                             <div style={{
                                 flex: 1,
+                                transform: `translateX(${isActive ? 0 : -5}px)`,
+                                transition: `transform ${stepDuration * 0.5}ms ease, box-shadow 0.35s ease`,
                                 background: order.cardBg,
                                 borderRadius: "10px",
                                 padding: "10px 14px",
@@ -344,7 +345,6 @@ export default function LoyaltyTiersAnimated({
                                 alignItems: "center",
                                 gap: "12px",
                                 boxShadow: isGlowing ? cardGlow : isActive ? "0 2px 8px rgba(0,0,0,0.10)" : "none",
-                                transition: `box-shadow 0.35s ease`,
                             }}>
                                 <div style={{
                                     width: "36px",
@@ -370,7 +370,7 @@ export default function LoyaltyTiersAnimated({
                     )
                 })}
 
-                {rail !== null && rail.height > 0 && fillHeightPx > 0 && (
+                {rail !== null && rail.height > 0 && (
                     <div style={{
                         ...lineRailStyle,
                         top: `${rail.top}px`,

@@ -11,6 +11,35 @@
   --green: #1f8b63;
   --shadow: 0 24px 70px rgba(40, 32, 20, 0.16);
   --radius: 8px;
+
+  /* Framer published site — color styles + measured shadows (see framer-site-mirror) */
+  --framer-sand-100: #f7f3f0;
+  --framer-sand-150: #fdf0e6;
+  --framer-bone-100: #ffffff;
+  --framer-bone-150: #e3e3e3;
+  --framer-bone-200: #d4d4d4;
+  --framer-black-100: #888888;
+  --framer-black-150: #595959;
+  --framer-black-250: #2e2e2e;
+  --framer-cobalt-450: #3b38eb;
+  --framer-cobalt-550: #1d1b9e;
+  --framer-nav-surface: rgba(255, 255, 255, 0.45);
+  --framer-nav-border: rgba(0, 0, 0, 0.08);
+  --framer-nav-radius: 16px;
+  --framer-nav-blur: 8px;
+  --framer-nav-link-height: 34px;
+  /* Photo / media tiles */
+  --framer-shadow-image-soft: 0 2px 6px rgba(0, 0, 0, 0.048), 0 1px 2px rgba(0, 0, 0, 0.026);
+  --framer-shadow-image-strong: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --framer-outline-image: 0.8px solid rgba(0, 0, 0, 0.1);
+  --framer-radius-media: 8px;
+  /* Panels & floating UI */
+  --framer-shadow-panel: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --framer-radius-card: 14px;
+  --framer-surface-glass: rgba(255, 255, 255, 0.92);
+  /* “Tier” icon stacks / promo chips */
+  --framer-shadow-tiered: 0 2px 4px rgba(0, 0, 0, 0.12), 0 10px 22px rgba(0, 0, 0, 0.18),
+    0 24px 48px rgba(0, 0, 0, 0.14), 0 40px 72px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -39,6 +68,15 @@ body.contrast {
   --muted: #c8bfae;
   --line: rgba(255, 247, 232, 0.2);
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+  --framer-nav-surface: rgba(24, 24, 24, 0.55);
+  --framer-nav-border: rgba(255, 247, 232, 0.12);
+  --framer-shadow-image-soft: 0 2px 8px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --framer-shadow-image-strong: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --framer-outline-image: 0.8px solid rgba(255, 247, 232, 0.14);
+  --framer-shadow-panel: 0 8px 28px rgba(0, 0, 0, 0.4);
+  --framer-surface-glass: rgba(28, 28, 28, 0.92);
+  --framer-shadow-tiered: 0 2px 6px rgba(0, 0, 0, 0.45), 0 12px 28px rgba(0, 0, 0, 0.35),
+    0 28px 56px rgba(0, 0, 0, 0.28);
 }
 
 img {
@@ -178,6 +216,144 @@ body.contrast .magic-card:hover::before {
 
 body.contrast .magic-card:hover {
   box-shadow: 0 8px 28px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* Framer-aligned magic card: softer lift using portfolio panel shadow */
+.magic-card--framer {
+  border-radius: var(--framer-radius-media);
+}
+
+.magic-card--framer:not(:hover) {
+  box-shadow: var(--framer-shadow-image-soft);
+}
+
+.magic-card--framer:hover {
+  box-shadow: var(--framer-shadow-panel), var(--framer-shadow-image-soft);
+}
+
+body.contrast .magic-card--framer:not(:hover) {
+  box-shadow: var(--framer-shadow-image-soft);
+}
+
+body.contrast .magic-card--framer:hover {
+  box-shadow: var(--framer-shadow-panel), var(--framer-shadow-image-soft);
+}
+
+/* Framer desktop dock nav (glass pill + link chips) */
+.nav--framer-dock {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 58px;
+  padding: 10px 12px;
+  border-radius: var(--framer-nav-radius);
+  border: 1px solid var(--framer-nav-border);
+  background: var(--framer-nav-surface);
+  backdrop-filter: blur(var(--framer-nav-blur));
+  -webkit-backdrop-filter: blur(var(--framer-nav-blur));
+  overflow: hidden;
+}
+
+.nav--framer-dock::before {
+  content: "";
+  position: absolute;
+  left: -80%;
+  top: -240%;
+  width: 130px;
+  height: 130px;
+  border-radius: 999px;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.4) 38%,
+    transparent 72%
+  );
+  filter: blur(14px);
+  mix-blend-mode: screen;
+  opacity: 0.22;
+  z-index: 0;
+}
+
+body.contrast .nav--framer-dock::before {
+  opacity: 0.12;
+  mix-blend-mode: lighten;
+}
+
+.nav--framer-dock > a,
+.nav--framer-dock > button {
+  position: relative;
+  z-index: 1;
+}
+
+.nav--framer-dock a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--framer-nav-link-height);
+  padding: 0 12px;
+  border-radius: 999px;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  color: rgb(22, 22, 22);
+  background: transparent;
+  margin: 0 2px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+body.contrast .nav--framer-dock a {
+  color: var(--ink);
+}
+
+.nav--framer-dock a:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+body.contrast .nav--framer-dock a:hover {
+  background: rgba(255, 247, 232, 0.08);
+}
+
+/* Image / media frame — Framer “photo stack” shadow */
+.img-framer {
+  border-radius: var(--framer-radius-media);
+  overflow: hidden;
+  box-shadow: var(--framer-shadow-image-soft);
+}
+
+.img-framer--outline {
+  box-shadow: var(--framer-shadow-image-strong);
+  outline: var(--framer-outline-image);
+  outline-offset: 0;
+}
+
+.img-framer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content cards — glass row + tiered icon treatments */
+.card-framer-glass {
+  background: var(--framer-surface-glass);
+  color: rgb(17, 17, 17);
+  border: 1px solid var(--framer-nav-border);
+  border-radius: var(--framer-radius-card);
+  padding: 16px;
+  box-shadow: none;
+}
+
+body.contrast .card-framer-glass {
+  color: var(--ink);
+}
+
+.card-framer-tiered {
+  border-radius: var(--framer-radius-media);
+  box-shadow: var(--framer-shadow-tiered);
 }
 
 body.contrast .apple-glass {
@@ -535,12 +711,51 @@ h3 {
   padding: 12px;
 }
 
-.timeline-card img {
+.timeline-card > img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 6px;
   margin-bottom: 18px;
+}
+
+.timeline-card-media {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.timeline-card-media--five {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.timeline-card-media--six {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 4px;
+}
+
+@media (max-width: 640px) {
+  .timeline-card-media--five {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .timeline-card-media--six {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.timeline-card-media--triple {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.timeline-card-media img {
+  width: 100%;
+  aspect-ratio: 3 / 5;
+  object-fit: cover;
+  object-position: left center;
+  border-radius: 6px;
 }
 
 .timeline-card span,
@@ -1052,6 +1267,10 @@ h3 {
 
   .magic-card:hover {
     box-shadow: none;
+  }
+
+  .magic-card--framer:hover {
+    box-shadow: var(--framer-shadow-image-soft);
   }
 
   .apple-glass:hover {

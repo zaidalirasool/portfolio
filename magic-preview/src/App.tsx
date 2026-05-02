@@ -40,12 +40,12 @@ const workflowContent: Record<string, string> = {
   Cursor: "Cursor keeps prototypes close to the material reality of code.",
 };
 
-const figmaHeroImage = "https://www.figma.com/api/mcp/asset/2f901799-f4b6-4adf-9d00-60a97200604f";
 const companyLogos = [
-  { name: "Shopify", src: "/site/shopify.jpg" },
-  { name: "Amazon", src: "/site/amazon.jpg" },
-  { name: "Costco", src: "/site/costco.jpg" },
-  { name: "DSAC", src: "/site/dsac.jpg" },
+  { name: "Shopify", src: "/site/shopify.svg" },
+  { name: "Amazon", src: "/site/amazon.svg" },
+  { name: "Costco", src: "/site/costco.svg" },
+  /** Local preview uses RGD wordmark SVG (Canadian designers org); replace with official DSAC artwork if you have it. */
+  { name: "DSAC", src: "/site/dsac.svg" },
 ];
 const firstLogoRow = companyLogos.slice(0, 2);
 const secondLogoRow = companyLogos.slice(2);
@@ -79,23 +79,79 @@ function App() {
           </p>
         </div>
         <MagicCard className="hero-image-card">
-          <img src={figmaHeroImage} alt="Zaid in mountain landscape" />
+          <img src="/site/hero-portrait.jpg" alt="Zaid in mountain landscape" />
         </MagicCard>
       </section>
 
       <section id="story" className="cards">
         <MagicCard className="timeline-card">
-          <img src="/site/mumbai.jpg" alt="Mumbai skyline" />
+          <div className="timeline-card-media timeline-card-media--five">
+            <img src="/site/mumbai.jpg" alt="Mumbai skyline seen from above through haze" />
+            <img
+              src="/site/mumbai-street.png"
+              alt="Busy Mumbai street with auto-rickshaws and a red bus, seen from above"
+            />
+            <img
+              src="/site/mumbai-aerial.png"
+              alt="Hazy aerial view of dense Mumbai high-rises and highways"
+            />
+            <img
+              src="/site/mumbai-taj-palace.png"
+              alt="Taj Mahal Palace hotel with Mumbai Police barricades and pigeons in the foreground"
+            />
+            <img
+              src="/site/mumbai-central-night.png"
+              alt="Mumbai Central station platform at night with the bilingual station sign"
+            />
+          </div>
           <span>Born and raised</span>
           <h3>Mumbai, India</h3>
         </MagicCard>
         <MagicCard className="timeline-card">
-          <img src="/site/canada.jpg" alt="Zaid in snowy Canada" />
+          <div className="timeline-card-media timeline-card-media--triple">
+            <img
+              src="/site/canada-1.png"
+              alt="Couple on a mountain trail in colourful jackets with forest and peaks behind"
+            />
+            <img
+              src="/site/canada-2.png"
+              alt="Two people sitting on a wooden boardwalk overlooking a lake and mountains"
+            />
+            <img
+              src="/site/canada-3.png"
+              alt="Two people on skis on a sunny slope with a cabin in the distance"
+            />
+          </div>
           <span>2018</span>
           <h3>Immigrated to Canada</h3>
         </MagicCard>
         <MagicCard className="timeline-card">
-          <img src="/site/mountain.jpg" alt="Mountain ridge" />
+          <div className="timeline-card-media timeline-card-media--six">
+            <img
+              src="/site/rhizhome-1.png"
+              alt="Philodendron Birkin in a terracotta pot on a crescent wooden shelf"
+            />
+            <img
+              src="/site/rhizhome-2.png"
+              alt="Trailing pothos in a white ceramic pot on a hanging crescent moon shelf"
+            />
+            <img
+              src="/site/rhizhome-3.png"
+              alt="Heart-shaped leaf plant in terracotta on a tripod wooden plant stand"
+            />
+            <img
+              src="/site/rhizhome-4.png"
+              alt="Succulent in a dark ribbed ceramic pot on a mid-century three-legged wooden stand"
+            />
+            <img
+              src="/site/rhizhome-5.png"
+              alt="Small succulent in terracotta on a minimalist wooden pedestal"
+            />
+            <img
+              src="/site/rhizhome-6.png"
+              alt="Small succulent in a mustard ceramic pot on a rounded wooden pedestal with soft side light"
+            />
+          </div>
           <span>2022</span>
           <h3>Co-founded Rhizhome</h3>
         </MagicCard>

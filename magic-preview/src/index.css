@@ -227,10 +227,48 @@ body {
   gap: 0.75rem;
 }
 
-.timeline-card img {
+.timeline-card > img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  border-radius: 6px;
+}
+
+.timeline-card-media {
+  display: grid;
+  gap: 6px;
+}
+
+.timeline-card-media--five {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.timeline-card-media--six {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 4px;
+}
+
+@media (max-width: 640px) {
+  .timeline-card-media--five {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .timeline-card-media--six {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.timeline-card-media--triple {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.timeline-card-media img {
+  width: 100%;
+  aspect-ratio: 3 / 5;
+  object-fit: cover;
+  object-position: left center;
   border-radius: 6px;
 }
 

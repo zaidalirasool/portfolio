@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaidali — Project 1 deck (preview)</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="presentation.css" />
+  </head>
+  <body class="presentation-body">
+    <div class="magic-grid" aria-hidden="true"></div>
+    <div class="presentation-shell">
+      <header class="presentation-top">
+        <a class="presentation-brand" href="index.html">Zaidali</a>
+        <div class="presentation-controls">
+          <nav class="nav--framer-dock" aria-label="Slide navigation">
+            <button type="button" id="deck-prev" aria-label="Previous slide">← Prev</button>
+            <button type="button" id="deck-next" aria-label="Next slide">Next →</button>
+          </nav>
+          <span class="deck-counter" id="deck-counter" aria-live="polite">1 / 30</span>
+          <button class="theme-toggle presentation-theme" type="button" aria-label="Toggle contrast mode">
+            <span></span>
+          </button>
+        </div>
+      </header>
+
+      <div class="deck-viewport" id="deck-viewport" tabindex="0" aria-label="Presentation slides. Use arrow keys.">
+        <div class="deck-track" id="deck-track"></div>
+      </div>
+    </div>
+    <p class="deck-hint" aria-hidden="true">← → Arrow keys · Home · End</p>
+
+    <script>
+      (function () {
+        const viewport = document.getElementById("deck-viewport");
+        const track = document.getElementById("deck-track");
+        const btnPrev = document.getElementById("deck-prev");
+        const btnNext = document.getElementById("deck-next");
+        const counter = document.getElementById("deck-counter");
+        const themeBtn = document.querySelector(".presentation-theme");
+
+        const pillarsFull = [
+          "Prevent churn",
+          "Retain one-time buyers → subscribers",
+          "Grow",
+          "Convert",
+          "Upsell & cross-sell",
+        ];
+
+        /** @type {{ eyebrow?: string; title: string; sub?: string; lead?: string; variant?: string; pillars?: string[]; columns?: { label: string; text: string }[]; chips?: string[]; html?: string; metrics?: { value: string; label: string }[]; list?: string[]; hmw?: string }[]} */
+        const SLIDES = [
+          {
+            eyebrow: "Project 1",
+            title: "Crafting loyalty that delivers",
+            lead: "Increasing merchant adoption from 8% to 35%",
+            variant: "hero",
+          },
+          {
+            eyebrow: "Background",
+            title: "Understanding the user's POV",
+          },
+          {
+            eyebrow: "Background",
+            title: "Understanding the user's POV",
+            pillars: pillarsFull,
+          },
+          {
+            eyebrow: "How might we",
+            hmw:
+              "Give merchants the tools to retain subscribers until their next order (and prevent churn)?",
+            pillars: pillarsFull,
+          },
+          {
+            eyebrow: "Goals",
+            title: "User & business alignment",
+            columns: [
+              {
+                label: "User goal",
+                text: "Facilitate merchants to reward subscribers for their continued loyalty.",
+              },
+              {
+                label: "Business goal",
+                text:
+                  "Launch Recharge's retention solutions for Loyalty, with an adoption goal of 12%.",
+              },
+            ],
+            chips: [
+              "Loyalty win-back",
+              "Recharge Loyalty",
+              "Retain — customer portal",
+              "Subscription billing & management",
+              "Grow — convert",
+              "Flexible subscribe & save",
+              "Post-purchase checkout",
+              "Upsell & cross-sell",
+            ],
+          },
+          {
+            eyebrow: "Building an understanding",
+            title: "Discovery + Define + Deliver",
+          },
+          {
+            eyebrow: "Building an understanding",
+            title: "Discovery + Define + Deliver",
+            lead: "Partnered with merchants, VP of Product, and PM to define and align on requirements.",
+          },
+          {
+            eyebrow: "Ideate, test, repeat",
+            title: "Tested concepts with 50+ merchants",
+            lead:
+              "Uncovered preferences and insights that informed product decisions across loyalty and retention.",
+          },
+          {
+            eyebrow: "Strategic takeaway 1",
+            title: "Loyalty as an engagement tool",
+            lead: "Customizable incentives that feel native to the merchant's brand and subscriber journey.",
+          },
+          {
+            eyebrow: "Strategic takeaway 2",
+            title: "Milestone-based loyalty tiers",
+            lead: "Structured progression so subscribers see clear value for staying subscribed.",
+          },
+          {
+            eyebrow: "What I delivered",
+            title: "Discovery + Define + Deliver",
+          },
+          {
+            eyebrow: "Shipped depth",
+            title: "Customizable reward incentives",
+            list: [
+              "Credit — fixed amount or percentage; subscription vs one-time eligibility.",
+              "Free gift — product, variants, auto-apply vs customer claim, skip/unskip behavior.",
+              "Discount — stacked with subscription pricing, recurring limits, combinations with referrals.",
+              "Landing page & announcements — configurable surfaces tied to retention moments.",
+            ],
+          },
+          {
+            eyebrow: "Experience pattern",
+            title: "Journey-based experience",
+            lead: "Orchestrated touchpoints across portal, checkout, and lifecycle — not one-off discounts.",
+          },
+          {
+            eyebrow: "Loyalty as engagement",
+            title: "Subscriber portal moments",
+            lead:
+              "Credits, next-order actions (send, reschedule, skip), and clear application rules — so rewards feel tangible before churn.",
+            list: [
+              "Auto-apply rewards to the next order",
+              "Transparent balances (e.g. Maris Credits)",
+              "Upgrade paths from one-time to subscription with credit application",
+            ],
+          },
+          {
+            eyebrow: "Cancellation prevention",
+            title: "Flows, branches & measurable outcomes",
+            lead:
+              "Configured surveys, incentives, and announcements — with analytics on saved vs lost subscriptions.",
+            metrics: [
+              { value: "1,302", label: "Total experiences (sample)" },
+              { value: "716 (55%)", label: "Lost" },
+              { value: "299 (23%)", label: "Saved: by offer" },
+              { value: "198 (18%)", label: "Saved: survey abandoned" },
+              { value: "195 (15%)", label: "Saved: credits applied" },
+            ],
+          },
+          {
+            eyebrow: "Systems",
+            title: "Evolving design system",
+            lead: "Extended patterns for configuration density, guardrails, and merchant-safe previews.",
+          },
+          {
+            eyebrow: "Project 1",
+            title: "Where things stand",
+          },
+          {
+            eyebrow: "Project 1",
+            title: "Where things stand",
+            lead:
+              "Current adoption sits at 35%. 47.55% of subscribers stay beyond their third subscription order — a new high.",
+          },
+          {
+            eyebrow: "Project 1",
+            title: "How is Recharge Loyalty performing?",
+            lead: "A general breakdown of activity data across merchant accounts.",
+          },
+          {
+            eyebrow: "Project 1",
+            title: "Learning and what's next",
+          },
+          {
+            eyebrow: "Project 1",
+            title: "Workflow complexity",
+          },
+          {
+            eyebrow: "Project 1",
+            title: "Workflow complexity",
+            sub: "Activation flows compete with day-to-day merchant bandwidth.",
+            lead:
+              "Merchants need confidence before committing — setup paths must earn trust step by step.",
+          },
+          {
+            eyebrow: "Project 1",
+            title: "Two important insights emerged",
+            columns: [
+              { label: "Retention", text: "Long-term retention matters more than quick one-off conversions alone." },
+              { label: "Transparency", text: "Merchants want to understand impact before they invest in configuration." },
+            ],
+          },
+          {
+            eyebrow: "I asked",
+            hmw: "How might we help merchants activate flows that they actually want to keep?",
+          },
+          {
+            eyebrow: "Guided setup",
+            title: "Step-by-step wizard",
+            lead: "Setup guide: launch upsell in a few steps — audience, swap mapping, visibility.",
+            list: [
+              "Progressive disclosure (e.g. 1/5 completed)",
+              "Swap-from / swap-to product clarity",
+              "Mark done & continue — reduces abandoned halfway states",
+            ],
+          },
+          {
+            eyebrow: "Merchant velocity",
+            title: "Pre-set smart defaults",
+            lead: "Cross-sell and portal surfaces ship faster when defaults reflect best practices.",
+            list: [
+              "Audience triggers — e.g. after customer portal load",
+              "Product sourcing — bestsellers, recommendations, collections, tags",
+              "Display counts aligned to guidance (e.g. 4–6 products)",
+            ],
+          },
+          {
+            eyebrow: "Trust & safety",
+            title: "Guardrail-based experience",
+            lead:
+              "Blocked progression until prerequisites complete — copy explains what's missing instead of silent failure.",
+            list: [
+              "Can't finish setup until prior checklist steps pass",
+              "Clear distinction between Save and Activate",
+              "Merchant view warnings before external screenshots",
+            ],
+          },
+          {
+            eyebrow: "Project 1",
+            title: "Time to convert",
+            metrics: [
+              { value: "4m 14s", label: "Upsell All (median-style preview)" },
+              { value: "3m 43s", label: "Cross-sell" },
+              { value: "4m 09s", label: "Guided wizard" },
+              { value: "3m 26s", label: "Canvas builder" },
+              { value: "—", label: "Subscription widget (baseline)" },
+            ],
+          },
+          {
+            eyebrow: "Project 1",
+            title: "Same-session deactivation",
+            lead: "Stronger signal where the guided path surfaced friction earlier.",
+            metrics: [
+              { value: "4.2×", label: "Sticker vs baseline — Upsell All" },
+              { value: "~38% vs ~9%", label: "Exposure split (preview figures)" },
+              { value: "2.2×", label: "Cross-sell sticker" },
+              { value: "~47% vs ~21%", label: "Cross-sell exposure (preview)" },
+              { value: "No change", label: "Subscription widget — avoid over-designing the wrong surface" },
+            ],
+          },
+          {
+            eyebrow: "Project 1",
+            title: "Conclusions",
+            lead:
+              "Retention tooling landed when incentives, journeys, and guardrails worked together — with adoption and behavioral metrics to prove where to double down next.",
+          },
+        ];
+
+        let index = 0;
+        const total = SLIDES.length;
+
+        function el(tag, className, text) {
+          const n = document.createElement(tag);
+          if (className) n.className = className;
+          if (text != null) n.textContent = text;
+          return n;
+        }
+
+        function renderSlide(data, i) {
+          const slide = el("section", "deck-slide card-framer-glass magic-card--framer");
+          if (data.variant === "hero") slide.classList.add("deck-slide--hero");
+          slide.setAttribute("role", "group");
+          slide.setAttribute("aria-roledescription", "slide");
+          slide.setAttribute("aria-label", `Slide ${i + 1} of ${total}`);
+          slide.dataset.slideIndex = String(i);
+
+          const inner = el("div", "deck-slide-inner");
+
+          if (data.eyebrow) {
+            const eb = el("p", "eyebrow", data.eyebrow);
+            inner.appendChild(eb);
+          }
+
+          if (data.title) inner.appendChild(el("h2", "deck-title", data.title));
+
+          if (data.sub) inner.appendChild(el("p", "deck-sub", data.sub));
+          if (data.lead) inner.appendChild(el("p", "deck-lead", data.lead));
+
+          if (data.hmw) {
+            inner.appendChild(el("p", "deck-hmw", data.hmw));
+          }
+
+          if (data.columns && data.columns.length) {
+            const grid = el("div", "deck-columns");
+            data.columns.forEach((col) => {
+              const c = el("div", "deck-col");
+              c.appendChild(el("h3", null, col.label));
+              c.appendChild(el("p", null, col.text));
+              grid.appendChild(c);
+            });
+            inner.appendChild(grid);
+          }
+
+          if (data.list && data.list.length) {
+            const ul = document.createElement("ul");
+            ul.className = "deck-list";
+            data.list.forEach((item) => ul.appendChild(el("li", null, item)));
+            inner.appendChild(ul);
+          }
+
+          if (data.chips && data.chips.length) {
+            const cg = el("div", "deck-product-grid");
+            data.chips.forEach((c) => cg.appendChild(el("div", "deck-chip", c)));
+            inner.appendChild(cg);
+          }
+
+          if (data.metrics && data.metrics.length) {
+            const mg = el("div", "deck-metrics");
+            data.metrics.forEach((m) => {
+              const card = el("div", "deck-metric");
+              card.appendChild(el("strong", null, m.value));
+              card.appendChild(el("span", null, m.label));
+              mg.appendChild(card);
+            });
+            inner.appendChild(mg);
+          }
+
+          if (data.pillars && data.pillars.length) {
+            const pg = el("div", "deck-pillars");
+            data.pillars.forEach((p) => pg.appendChild(el("span", "deck-pillar", p)));
+            inner.appendChild(pg);
+          }
+
+          slide.appendChild(inner);
+          return slide;
+        }
+
+        SLIDES.forEach((d, i) => track.appendChild(renderSlide(d, i)));
+
+        function measureDeck() {
+          const w = viewport.clientWidth;
+          track.style.width = `${total * w}px`;
+          [...track.children].forEach((slide) => {
+            slide.style.flex = `0 0 ${w}px`;
+            slide.style.width = `${w}px`;
+          });
+          sync();
+        }
+
+        function sync() {
+          const w = viewport.clientWidth;
+          track.style.transform = `translateX(-${index * w}px)`;
+          counter.textContent = `${index + 1} / ${total}`;
+          btnPrev.disabled = index <= 0;
+          btnNext.disabled = index >= total - 1;
+        }
+
+        function go(delta) {
+          index = Math.max(0, Math.min(total - 1, index + delta));
+          sync();
+        }
+
+        btnPrev.addEventListener("click", () => go(-1));
+        btnNext.addEventListener("click", () => go(1));
+
+        themeBtn?.addEventListener("click", () => {
+          document.body.classList.toggle("contrast");
+        });
+
+        window.addEventListener("keydown", (e) => {
+          if (e.target.closest("input, textarea, select, [contenteditable]")) return;
+          if (e.key === "ArrowRight" || e.key === "PageDown") {
+            e.preventDefault();
+            go(1);
+          } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+            e.preventDefault();
+            go(-1);
+          } else if (e.key === "Home") {
+            e.preventDefault();
+            index = 0;
+            sync();
+          } else if (e.key === "End") {
+            e.preventDefault();
+            index = total - 1;
+            sync();
+          }
+        });
+
+        let touchStartX = null;
+        viewport.addEventListener(
+          "touchstart",
+          (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+          },
+          { passive: true }
+        );
+        viewport.addEventListener(
+          "touchend",
+          (e) => {
+            if (touchStartX == null) return;
+            const dx = e.changedTouches[0].screenX - touchStartX;
+            touchStartX = null;
+            if (dx < -48) go(1);
+            else if (dx > 48) go(-1);
+          },
+          { passive: true }
+        );
+
+        measureDeck();
+        window.addEventListener("resize", () => {
+          measureDeck();
+        });
+
+        viewport.focus({ preventScroll: true });
+      })();
+    </script>
+  </body>
+</html>

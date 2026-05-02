@@ -52,7 +52,7 @@ const metrics = {
 function updateProgress() {
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
   const pct = scrollable > 0 ? window.scrollY / scrollable : 0;
-  progress.style.width = `${pct * 100}%`;
+  if (progress) progress.style.width = `${pct * 100}%`;
   if (siteHeader) siteHeader.classList.toggle("compact", window.scrollY > 42);
 }
 
@@ -66,6 +66,7 @@ window.addEventListener("load", () => {
 });
 
 window.addEventListener("pointermove", (event) => {
+  if (!glow) return;
   glow.style.left = `${event.clientX}px`;
   glow.style.top = `${event.clientY}px`;
 });
@@ -109,20 +110,22 @@ if (compare) {
   const after = compare.querySelector(".compare-after");
   const handle = compare.querySelector(".compare-handle");
 
-  function syncCompare(val) {
-    after.style.width = `${val}%`;
-    if (handle) handle.style.left = `${val}%`;
-  }
+  if (range && after) {
+    function syncCompare(val) {
+      after.style.width = `${val}%`;
+      if (handle) handle.style.left = `${val}%`;
+    }
 
-  range.addEventListener("input", () => syncCompare(range.value));
-  syncCompare(range.value);
+    range.addEventListener("input", () => syncCompare(range.value));
+    syncCompare(range.value);
+  }
 }
 
 document.querySelectorAll("[data-interest]").forEach((button) => {
   button.addEventListener("click", () => {
     document.querySelectorAll("[data-interest]").forEach((item) => item.classList.remove("active"));
     button.classList.add("active");
-    interestOutput.textContent = interests[button.dataset.interest];
+    if (interestOutput) interestOutput.textContent = interests[button.dataset.interest];
   });
 });
 
@@ -135,9 +138,9 @@ document.querySelectorAll("[data-case]").forEach((card) => {
     card.classList.add("active");
     showcase?.classList.add("swapping");
     setTimeout(() => {
-      caseImage.src = selected.image;
-      caseKicker.textContent = selected.kicker;
-      caseTitle.textContent = selected.title;
+      if (caseImage) caseImage.src = selected.image;
+      if (caseKicker) caseKicker.textContent = selected.kicker;
+      if (caseTitle) caseTitle.textContent = selected.title;
       showcase?.classList.remove("swapping");
     }, 200);
   }
@@ -155,7 +158,7 @@ document.querySelectorAll("[data-tool]").forEach((button) => {
   button.addEventListener("click", () => {
     document.querySelectorAll("[data-tool]").forEach((item) => item.classList.remove("active"));
     button.classList.add("active");
-    workflowOutput.textContent = workflow[button.dataset.tool];
+    if (workflowOutput) workflowOutput.textContent = workflow[button.dataset.tool];
   });
 });
 
@@ -163,19 +166,19 @@ document.querySelectorAll("[data-metric]").forEach((button) => {
   button.addEventListener("click", () => {
     document.querySelectorAll("[data-metric]").forEach((item) => item.classList.remove("active"));
     button.classList.add("active");
-    metricTicker.textContent = button.dataset.metric;
-    metricTicker.animate(
+    if (metricTicker) metricTicker.textContent = button.dataset.metric;
+    metricTicker?.animate(
       [
         { opacity: 0, transform: "translateY(10px) scale(0.96)", filter: "blur(8px)" },
         { opacity: 1, transform: "translateY(0) scale(1)", filter: "blur(0)" },
       ],
       { duration: 360, easing: "cubic-bezier(.2,.8,.2,1)" }
     );
-    metricReadout.textContent = metrics[button.dataset.metric];
+    if (metricReadout) metricReadout.textContent = metrics[button.dataset.metric];
   });
 });
 
-document.querySelector(".theme-toggle").addEventListener("click", () => {
+document.querySelector(".theme-toggle")?.addEventListener("click", () => {
   document.body.classList.toggle("contrast");
 });
 

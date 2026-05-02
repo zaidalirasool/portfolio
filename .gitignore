@@ -1,0 +1,22 @@
+node_modules/
+.DS_Store
+
+# Local Cursor / agent payloads (repo root only)
+/.cursor/
+/_*.json
+/_*.txt
+/_*.b64
+/_upload_staging/
+/.framer_*.json
+/.mcp_*.json
+/framer-mcp-args.json
+/terminal_arg_dump.txt
+
+# Framer MCP export scratch files (keep *.tsx sources only)
+/framer-code/_*
+/framer-code/.mcp_*
+/framer-code/mcp-update-args.json
+/framer-code/mcp-update-args.min.json
+
+# Scraped Framer mirror output (regenerate with framer-site-mirror/mirror.mjs)
+/framer-site-mirror/site/

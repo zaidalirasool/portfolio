@@ -1,0 +1,15 @@
+{
+  "name": "framer-site-mirror",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Static mirror of the published Framer site for independent hosting.",
+  "scripts": {
+    "mirror": "node mirror.mjs",
+    "strip-branding": "node mirror.mjs --strip-only",
+    "serve": "npx --yes serve site -p 4173"
+  },
+  "dependencies": {
+    "website-scraper": "^5.3.1"
+  }
+}
