@@ -186,12 +186,12 @@ export default function AnimatedTraitsList(props: AnimatedTraitsListProps) {
                                 <div
                                     style={{
                                         fontFamily: 'Inter, sans-serif',
-                                        fontSize: 22,
+                                        fontSize: 18,
                                         fontWeight: 500,
                                         fontStyle: 'normal',
-                                        lineHeight: 1.2,
+                                        lineHeight: '1.2em',
                                         textAlign: 'left',
-                                        letterSpacing: '-0.01em',
+                                        letterSpacing: '-0.3px',
                                         width: '100%',
                                     }}
                                 >
