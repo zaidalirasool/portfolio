@@ -136,7 +136,7 @@ function TieredProgress({ total }) {
 
   return (
     <div style={{
-      border: "1.5px solid #8a9e1a", borderRadius: "10px",
+      border: "1.5px solid #8a9e1a", borderRadius: "8px",
       padding: "12px", marginBottom: "16px",
       background: "#f9fce8",
     }}>
@@ -401,7 +401,7 @@ function CartItem({ item, isNew, onQtyChange, onSubscribeToggle, onUnsubscribe, 
         {/* Toggle row */}
         <div style={{
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "11px 14px", borderRadius: item.isSubscription ? "12px 12px 0 0" : "12px",
+          padding: "11px 14px", borderRadius: item.isSubscription ? "8px 8px 0 0" : "8px",
           border: "1.5px solid #d0d0d0",
           borderBottom: item.isSubscription ? "1px solid #f0f0f0" : "1.5px solid #d0d0d0",
           background: "white",
@@ -417,7 +417,7 @@ function CartItem({ item, isNew, onQtyChange, onSubscribeToggle, onUnsubscribe, 
         {item.isSubscription && (
           <div style={{
             border: "1.5px solid #d0d0d0", borderTop: "none",
-            borderRadius: "0 0 12px 12px",
+            borderRadius: "0 0 8px 8px",
             padding: "10px 10px 10px",
             display: "flex", flexDirection: "column", gap: "8px",
             background: "white",
@@ -429,7 +429,7 @@ function CartItem({ item, isNew, onQtyChange, onSubscribeToggle, onUnsubscribe, 
                 onClick={() => onFrequencyChange(item.id, opt.value)}
                 style={{
                   display: "flex", alignItems: "center", gap: "12px",
-                  padding: "11px 14px", borderRadius: "10px", textAlign: "left",
+                  padding: "11px 14px", borderRadius: "8px", textAlign: "left",
                   border: `1.5px solid ${item.frequency === opt.value ? "#8a9e1a" : "#e8e8e8"}`,
                   background: item.frequency === opt.value ? "#f9fce8" : "white",
                   cursor: "pointer", width: "100%",
@@ -537,7 +537,7 @@ function RecommendedCarousel({ items, addedMap, onAdd }) {
 function RecommendedItem({ item, onAdd, added }) {
   return (
     <div style={{
-      border: "1.5px solid #e8e8e8", borderRadius: "12px", padding: "12px 14px",
+      border: "1.5px solid #e8e8e8", borderRadius: "8px", padding: "12px 14px",
       display: "flex", alignItems: "center", gap: "12px", background: "#FAF8F6",
     }}>
       <div style={{ width: "64px", height: "64px", borderRadius: "8px", overflow: "hidden", flexShrink: 0, background: item.isToteBag ? "#f5efe6" : "#f2f2f2", boxShadow: "0 2px 8px rgba(0,0,0,0.08)", outline: "0.8px solid rgba(0,0,0,0.10)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -637,7 +637,7 @@ function PostPurchaseModal({ onClose }) {
             </div>
 
             {/* Product */}
-            <div style={{ border: "1.5px solid #e8e8e8", borderRadius: "12px", padding: "14px", marginBottom: "12px" }}>
+            <div style={{ border: "1.5px solid #e8e8e8", borderRadius: "8px", padding: "14px", marginBottom: "12px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
                 <SupplementBottle />
                 <div>
@@ -784,7 +784,7 @@ export default function RechargeCart() {
 
       {/* Cart card */}
       <div style={{ background: "#c5d92e", borderRadius: "8px", padding: "32px 196px" }}>
-        <div style={{ background: "white", borderRadius: "16px", padding: "24px", boxShadow: "0 4px 12px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column", width: "472px", height: "944px" }}>
+        <div style={{ background: "white", borderRadius: "8px", padding: "24px", boxShadow: "0 4px 12px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column", width: "472px", height: "944px" }}>
           <h1 style={{ margin: "0 0 16px", fontSize: "20px", fontWeight: "800", color: "#1a1a1a", flexShrink: 0 }}>Your shopping cart</h1>
 
           <div style={{ flexShrink: 0 }}>
@@ -843,7 +843,7 @@ export default function RechargeCart() {
               onClick={() => setShowPostPurchase(true)}
               className="checkout-btn"
               style={{
-                width: "100%", padding: "12px", borderRadius: "12px",
+                width: "100%", padding: "12px", borderRadius: "8px",
                 border: "2px solid #1a1a1a", background: "white",
                 fontSize: "16px", fontWeight: "700", cursor: "pointer",
                 marginBottom: "10px", color: "#1a1a1a", letterSpacing: "-0.1px",
@@ -855,10 +855,9 @@ export default function RechargeCart() {
             <button
               className="shop-pay-btn"
               style={{
-                width: "100%", padding: "14px", borderRadius: "12px",
+                width: "100%", padding: "14px", borderRadius: "8px",
                 border: "none", background: "#5a31f4", cursor: "pointer",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                borderRadius: "12px",
               }}
             >
               <ShopPayIcon />

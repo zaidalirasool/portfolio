@@ -137,7 +137,7 @@ function TieredProgress({ total }: { total: number }) {
     })
 
     return (
-        <div style={{ border: "1.5px solid #8a9e1a", borderRadius: "10px", padding: "12px", marginBottom: "16px", background: "#f9fce8", direction: "ltr" }}>
+        <div style={{ border: "1.5px solid #8a9e1a", borderRadius: "8px", padding: "12px", marginBottom: "16px", background: "#f9fce8", direction: "ltr" }}>
             <p style={{ margin: "0 0 12px", fontSize: "13px", fontWeight: "500", color: "#2d2d2d", textAlign: "center", height: "20px", lineHeight: "20px", overflow: "hidden", whiteSpace: "nowrap" }}>
                 {message}
             </p>
@@ -338,7 +338,7 @@ function CartItem({ item, isNew, onQtyChange, onSubscribeToggle, onUnsubscribe, 
                     <div style={{
                         display: "flex", alignItems: "center", justifyContent: "space-between",
                         padding: "11px 14px",
-                        borderRadius: item.isSubscription ? "12px 12px 0 0" : "12px",
+                        borderRadius: item.isSubscription ? "8px 8px 0 0" : "8px",
                         border: "1.5px solid #d0d0d0",
                         borderBottom: item.isSubscription ? "1px solid #f0f0f0" : "1.5px solid #d0d0d0",
                         background: "white", transition: "border-radius 0.15s",
@@ -350,7 +350,7 @@ function CartItem({ item, isNew, onQtyChange, onSubscribeToggle, onUnsubscribe, 
                     {item.isSubscription && (
                         <div style={{
                             border: "1.5px solid #d0d0d0", borderTop: "none",
-                            borderRadius: "0 0 12px 12px", padding: "10px",
+                            borderRadius: "0 0 8px 8px", padding: "10px",
                             display: "flex", flexDirection: "column", gap: "8px",
                             background: "white",
                         }}>
@@ -361,7 +361,7 @@ function CartItem({ item, isNew, onQtyChange, onSubscribeToggle, onUnsubscribe, 
                                     onClick={() => onFrequencyChange(item.id, opt.value)}
                                     style={{
                                         display: "flex", alignItems: "center", gap: "12px",
-                                        padding: "11px 14px", borderRadius: "10px", textAlign: "left",
+                                        padding: "11px 14px", borderRadius: "8px", textAlign: "left",
                                         border: `1.5px solid ${item.frequency === opt.value ? "#8a9e1a" : "#e8e8e8"}`,
                                         background: item.frequency === opt.value ? "#f9fce8" : "white",
                                         cursor: "pointer", width: "100%",
@@ -402,7 +402,7 @@ interface RecItem {
 function RecommendedItem({ item, onAdd, added }: { item: RecItem; onAdd: () => void; added: boolean }) {
     return (
         <div style={{
-            border: "1.5px solid #e8e8e8", borderRadius: "12px", padding: "12px 14px",
+            border: "1.5px solid #e8e8e8", borderRadius: "8px", padding: "12px 14px",
             display: "flex", alignItems: "center", gap: "12px", background: "#FAF8F6",
         }}>
             <div style={{
@@ -539,7 +539,7 @@ function PostPurchaseModal({ onClose }: { onClose: () => void }) {
                                 </span>
                             )}
                         </div>
-                        <div style={{ border: "1.5px solid #e8e8e8", borderRadius: "12px", padding: "14px", marginBottom: "12px" }}>
+                        <div style={{ border: "1.5px solid #e8e8e8", borderRadius: "8px", padding: "14px", marginBottom: "12px" }}>
                             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
                                 <SupplementBottle />
                                 <div>
@@ -684,7 +684,7 @@ export default function RechargeCart({ signatureBlendImage, decafBlendImage, sin
         <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", display: "inline-block", direction: "ltr" }}>
             <CartStyles />
             <div style={{ background: "#c5d92e", borderRadius: "8px", padding: "32px 196px" }}>
-                <div style={{ background: "white", borderRadius: "16px", padding: "24px", boxShadow: "0 4px 12px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column", width: "472px", height: "944px" }}>
+                <div style={{ background: "white", borderRadius: "8px", padding: "24px", boxShadow: "0 4px 12px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column", width: "472px", height: "944px" }}>
                     <h1 style={{ margin: "0 0 16px", fontSize: "20px", fontWeight: "800", color: "#1a1a1a", flexShrink: 0 }}>Your shopping cart</h1>
                     <div style={{ flexShrink: 0 }}>
                         <TieredProgress total={subtotal} />
@@ -724,13 +724,13 @@ export default function RechargeCart({ signatureBlendImage, decafBlendImage, sin
                         <button
                             onClick={() => setShowPostPurchase(true)}
                             className="rc-checkout-btn"
-                            style={{ width: "100%", padding: "12px", borderRadius: "12px", border: "2px solid #1a1a1a", background: "white", fontSize: "16px", fontWeight: "700", cursor: "pointer", marginBottom: "10px", color: "#1a1a1a", letterSpacing: "-0.1px" }}
+                            style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "2px solid #1a1a1a", background: "white", fontSize: "16px", fontWeight: "700", cursor: "pointer", marginBottom: "10px", color: "#1a1a1a", letterSpacing: "-0.1px" }}
                         >
                             Proceed to checkout
                         </button>
                         <button
                             className="rc-shoppay-btn"
-                            style={{ width: "100%", padding: "14px", borderRadius: "12px", border: "none", background: "#5a31f4", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
+                            style={{ width: "100%", padding: "14px", borderRadius: "8px", border: "none", background: "#5a31f4", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
                         >
                             <ShopPayLogo />
                         </button>
