@@ -339,7 +339,7 @@ export default function LoyaltyTiersAnimated({
                                 transform: `translateX(${isActive ? 0 : -5}px)`,
                                 transition: `transform ${stepDuration * 0.5}ms ease, box-shadow 0.35s ease`,
                                 background: order.cardBg,
-                                borderRadius: "10px",
+                                borderRadius: "8px",
                                 padding: "10px 14px",
                                 display: "flex",
                                 alignItems: "center",
