@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animated Graph Preview</title>
+  <style>
+    :root {
+      --ink: #191d48;
+      --muted: #606373;
+      --accent: #3901f1;
+      --canvas: #9680e0;
+      --sticker: #d63333;
+      --design-width: 2004;
+      --design-height: 678.2;
+      --scale: 1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #f5f6fb;
+      font-family: Avenir, Arial, sans-serif;
+    }
+
+    .viewport {
+      width: min(96vw, 1500px);
+      height: min(72vh, 760px);
+      min-height: 520px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scale {
+      width: 2004px;
+      height: 678.2px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(var(--scale));
+      transform-origin: center;
+    }
+
+    .graph {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      box-shadow: 0px 1.8421878814697266px 7.37px rgba(25, 29, 72, 0.2);
+      border-radius: 22.11px;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 36px 36px 48px;
+      isolation: isolate;
+      gap: 18.4px;
+      text-align: left;
+      font-size: 20px;
+      color: var(--sticker);
+    }
+
+    .frameParent {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 56px;
+      z-index: 0;
+      flex-shrink: 0;
+      font-size: 25.79px;
+      color: var(--ink);
+    }
+
+    .frameWrapper {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    .frameGroup {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .toggleSelectorListElementWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .toggleSelectorListElement {
+      display: flex;
+      align-items: flex-start;
+      gap: 14.7px;
+    }
+
+    .toggleSelectorListElement2 {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .toggleSelector {
+      height: 37px;
+      width: 37px;
+      position: relative;
+      border-radius: 33.16px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .rectangle10Copy31Parent,
+    .rectangle10Copy31,
+    .rectangle10Copy312 {
+      position: absolute;
+      inset: 0;
+    }
+
+    .rectangle10Copy31,
+    .rectangle10Copy312 {
+      border-radius: 46.05px;
+      background-color: var(--accent);
+    }
+
+    .rectangle10Copy312 {
+      background-color: #9c80f8;
+    }
+
+    .rectangle10Copy32 {
+      position: absolute;
+      height: 80%;
+      width: 44.32%;
+      top: 10%;
+      right: 5.68%;
+      bottom: 10%;
+      left: 50%;
+      box-shadow: 0px 1.8421878814697266px 7.37px rgba(25, 29, 72, 0.2);
+      border-radius: 46.05px;
+      background-color: #fff;
+      display: none;
+    }
+
+    .guidedWizardParent {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .guidedWizard {
+      align-self: stretch;
+      position: relative;
+      line-height: 36.84px;
+      flex-shrink: 0;
+    }
+
+    .optionalElementLevelHelper,
+    .spacer {
+      width: 2571.7px;
+      position: relative;
+      display: none;
+      flex-shrink: 0;
+    }
+
+    .optionalElementLevelHelper {
+      line-height: 36.84px;
+      color: #6e7381;
+    }
+
+    .spacer {
+      height: 29.5px;
+    }
+
+    .graph2 {
+      width: 1932px;
+      height: 501.2px;
+      position: relative;
+      flex-shrink: 0;
+      text-align: right;
+      font-size: 22.11px;
+      color: var(--muted);
+    }
+
+    .graphLines {
+      position: absolute;
+      top: 0.16px;
+      left: 0;
+      width: 1931px;
+      height: 470px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .graphLine,
+    .graphLine5 {
+      align-self: stretch;
+      height: 27.6px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 14.7px;
+    }
+
+    .graphLine5 {
+      height: 31.3px;
+    }
+
+    .div,
+    .div3 {
+      position: relative;
+      line-height: 29.48px;
+      flex-shrink: 0;
+    }
+
+    .div3 {
+      width: 64.5px;
+      display: inline-block;
+    }
+
+    .graphLineChild,
+    .graphLineInner,
+    .graphLineChild2 {
+      height: 0;
+      position: relative;
+      border-top: 1.8px dashed #f0f0f3;
+      border-image: repeating-linear-gradient(to right, #f0f0f3 0 4px, transparent 4px 8px) 1;
+      max-height: 100%;
+      flex-shrink: 0;
+    }
+
+    .graphLineChild {
+      width: 1851px;
+    }
+
+    .graphLineInner,
+    .graphLineChild2 {
+      flex: 1;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .upsellAllParent {
+      position: absolute;
+      top: 471.16px;
+      left: 69.97px;
+      display: flex;
+      align-items: flex-start;
+      padding: 0 180px;
+      gap: 553px;
+      text-align: left;
+    }
+
+    .upsellAll {
+      position: relative;
+      line-height: 29.48px;
+    }
+
+    .bars {
+      position: absolute;
+      top: 0;
+      left: 79.52px;
+      width: 1852px;
+      height: 455px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 56px;
+      gap: 323px;
+    }
+
+    .bar,
+    .bar2,
+    .bar3 {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+    }
+
+    .bar {
+      height: 377px;
+    }
+
+    .bar2 {
+      height: 411px;
+    }
+
+    .bar3 {
+      height: 365px;
+    }
+
+    .barChild,
+    .barItem,
+    .barInner,
+    .rectangleDiv,
+    .barChild2,
+    .barChild3 {
+      width: 156px;
+      position: relative;
+      border-radius: 3.68px 3.68px 0 0;
+      transform-origin: bottom center;
+      transform: scaleY(0);
+      animation: grow-up 1700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .barChild {
+      height: 73px;
+      background-color: var(--accent);
+      animation-delay: 260ms;
+    }
+
+    .barItem {
+      height: 333px;
+      background-color: var(--canvas);
+      animation-delay: 420ms;
+    }
+
+    .barInner {
+      height: 200px;
+      background-color: var(--accent);
+      animation-delay: 580ms;
+    }
+
+    .rectangleDiv {
+      height: 411px;
+      background-color: var(--canvas);
+      animation-delay: 740ms;
+    }
+
+    .barChild2 {
+      height: 111px;
+      background-color: var(--accent);
+      animation-delay: 900ms;
+    }
+
+    .barChild3 {
+      height: 111px;
+      background-color: var(--canvas);
+      animation-delay: 1060ms;
+    }
+
+    .barValue,
+    .barValue2,
+    .crossSellValue,
+    .crossSellValue2,
+    .subscriptionValue,
+    .subscriptionValue2 {
+      width: 156px;
+      position: absolute;
+      color: var(--ink);
+      font-size: 20px;
+      font-weight: 900;
+      text-align: center;
+      display: inline-block;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(0);
+      z-index: 4;
+    }
+
+    .barValue {
+      height: 24px;
+      left: 0;
+      bottom: 0;
+      line-height: 24px;
+      animation: value-rise-small 1700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 260ms;
+    }
+
+    .barValue2 {
+      height: 24px;
+      left: 172px;
+      bottom: 0;
+      line-height: 24px;
+      animation: value-rise 1700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 420ms;
+    }
+
+    .crossSellValue,
+    .crossSellValue2,
+    .subscriptionValue,
+    .subscriptionValue2 {
+      height: 30px;
+      bottom: 0;
+      line-height: 29.48px;
+      color: #4d5164;
+    }
+
+    .crossSellValue,
+    .crossSellValue2 {
+      width: 156px;
+      height: 30px;
+      line-height: 29.48px;
+      font-size: 20px;
+      font-weight: 900;
+      color: #4d5164;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .crossSellValue {
+      left: 0;
+      animation: cross-sell-value-rise 1700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 580ms;
+    }
+
+    .crossSellValue2 {
+      left: 172px;
+      animation: cross-sell-value-rise-tall 1700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 740ms;
+    }
+
+    .subscriptionValue,
+    .subscriptionValue2 {
+      left: 0;
+      animation: subscription-value-rise 1700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 900ms;
+    }
+
+    .subscriptionValue2 {
+      left: 172px;
+      animation-delay: 1060ms;
+    }
+
+    .xSticker,
+    .xSticker2,
+    .noChange {
+      height: 24px;
+      position: absolute;
+      margin: 0;
+      top: 635px;
+      line-height: 24px;
+      font-weight: 900;
+      display: inline-block;
+      flex-shrink: 0;
+      color: var(--sticker);
+      transform: scale(0.68);
+      opacity: 0;
+      transform-origin: center;
+      animation: pop-in 560ms cubic-bezier(0.18, 1.5, 0.42, 1) forwards;
+    }
+
+    .xSticker {
+      width: 110px;
+      left: 932px;
+      z-index: 1;
+      animation-delay: 1280ms;
+    }
+
+    .xSticker2 {
+      width: 110px;
+      left: 278px;
+      z-index: 2;
+      animation-delay: 1410ms;
+    }
+
+    .noChange {
+      width: 102px;
+      left: 1607px;
+      z-index: 3;
+      text-align: right;
+      animation-delay: 1540ms;
+    }
+
+    @keyframes grow-up {
+      to {
+        transform: scaleY(1);
+      }
+    }
+
+    @keyframes value-rise {
+      to {
+        opacity: 1;
+        transform: translateY(-343px);
+      }
+    }
+
+    @keyframes value-rise-small {
+      to {
+        opacity: 1;
+        transform: translateY(-83px);
+      }
+    }
+
+    @keyframes cross-sell-value-rise {
+      to {
+        opacity: 1;
+        transform: translateY(-210px);
+      }
+    }
+
+    @keyframes cross-sell-value-rise-tall {
+      to {
+        opacity: 1;
+        transform: translateY(-421px);
+      }
+    }
+
+    @keyframes subscription-value-rise {
+      to {
+        opacity: 1;
+        transform: translateY(-121px);
+      }
+    }
+
+    @keyframes pop-in {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="viewport" id="viewport">
+    <div class="scale" id="scale">
+      <main class="graph">
+        <div class="frameParent">
+          <div class="frameWrapper">
+            <div class="frameGroup">
+              <div class="toggleSelectorListElementWrapper">
+                <div class="toggleSelectorListElement">
+                  <div class="toggleSelector">
+                    <div class="rectangle10Copy31Parent">
+                      <div class="rectangle10Copy31"></div>
+                      <div class="rectangle10Copy32"></div>
+                    </div>
+                  </div>
+                  <div class="guidedWizardParent">
+                    <div class="guidedWizard">Guided wizard</div>
+                    <div class="optionalElementLevelHelper">Optional element-level helper text lorem ipsum dolor sit.</div>
+                    <div class="spacer"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="toggleSelectorListElementWrapper">
+                <div class="toggleSelectorListElement2">
+                  <div class="toggleSelector">
+                    <div class="rectangle10Copy31Parent">
+                      <div class="rectangle10Copy312"></div>
+                      <div class="rectangle10Copy32"></div>
+                    </div>
+                  </div>
+                  <div class="guidedWizardParent">
+                    <div class="guidedWizard">Canvas builder</div>
+                    <div class="optionalElementLevelHelper">Optional element-level helper text lorem ipsum dolor sit.</div>
+                    <div class="spacer"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="graph2">
+            <div class="graphLines">
+              <div class="graphLine"><div class="div">50%</div><div class="graphLineChild"></div></div>
+              <div class="graphLine"><div class="div">40%</div><div class="graphLineChild"></div></div>
+              <div class="graphLine"><div class="div3">30%</div><div class="graphLineInner"></div></div>
+              <div class="graphLine"><div class="div3">20%</div><div class="graphLineInner"></div></div>
+              <div class="graphLine5"><div class="div3">10%</div><div class="graphLineChild2"></div></div>
+              <div class="graphLine"><div class="div3">0%</div><div class="graphLineInner"></div></div>
+            </div>
+
+            <div class="upsellAllParent">
+              <div class="upsellAll">Upsell All</div>
+              <div class="upsellAll">Cross-Sell</div>
+              <div class="upsellAll">Subscription Widget</div>
+            </div>
+
+            <div class="bars">
+              <div class="bar">
+                <div class="barChild"></div>
+                <div class="barItem"></div>
+                <div class="barValue">≈9%</div>
+                <div class="barValue2">≈38%</div>
+              </div>
+              <div class="bar2">
+                <div class="barInner"></div>
+                <div class="crossSellValue">≈22%</div>
+                <div class="rectangleDiv"></div>
+                <div class="crossSellValue2">≈47%</div>
+              </div>
+              <div class="bar3">
+                <div class="barChild2"></div>
+                <div class="subscriptionValue">≈11.7%</div>
+                <div class="barChild3"></div>
+                <div class="subscriptionValue2">≈11.7%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="xSticker">2.2x sticker</div>
+        <div class="xSticker2">4.2x sticker</div>
+        <div class="noChange">No change</div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const viewport = document.getElementById("viewport")
+    const setScale = () => {
+      const rect = viewport.getBoundingClientRect()
+      const scale = Math.min(rect.width / 2004, rect.height / 678.2)
+      document.documentElement.style.setProperty("--scale", scale)
+    }
+
+    setScale()
+    new ResizeObserver(setScale).observe(viewport)
+  </script>
+</body>
+</html>
