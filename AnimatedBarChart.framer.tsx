@@ -470,7 +470,7 @@ export default function AnimatedBarChart(props: AnimatedBarChartProps) {
                                                     initial={false}
                                                     animate={{
                                                         opacity: hasStarted ? 1 : 0,
-                                                        y: hasStarted ? -(bar.height + 10) : 0,
+                                                        y: hasStarted ? -(bar.height + 4) : 0,
                                                     }}
                                                     transition={{ ...barTransition, delay: hasStarted ? delay : 0 }}
                                                     style={{
