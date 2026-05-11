@@ -15,7 +15,10 @@ const ACCENT = "#3901F1"
 const CANVAS = "#9680E0"
 const STICKER = "#D63333"
 const DESIGN_WIDTH = 2004
-const DESIGN_HEIGHT = 678.2
+const DESIGN_HEIGHT = 654.64
+const CARD_RADIUS = 8
+const BAR_RADIUS = 8
+const SHADOW_GUTTER = 16
 
 interface AnimatedBarChartProps {
     duration: number
@@ -73,9 +76,9 @@ const barGroups: Array<{ className: string; height: number; bars: BarSpec[] }> =
 ]
 
 const stickers = [
-    { className: "xSticker", label: "2.2x sticker", left: 932, top: 635, width: 110, zIndex: 1, textAlign: "left" as const },
-    { className: "xSticker2", label: "4.2x sticker", left: 278, top: 635, width: 110, zIndex: 2, textAlign: "left" as const },
-    { className: "noChange", label: "No change", left: 1607, top: 635, width: 102, zIndex: 3, textAlign: "right" as const },
+    { className: "xSticker", label: "2.2x sticker", left: 932, top: 594.64, width: 110, zIndex: 1, textAlign: "left" as const },
+    { className: "xSticker2", label: "4.2x sticker", left: 278, top: 594.64, width: 110, zIndex: 2, textAlign: "left" as const },
+    { className: "noChange", label: "No change", left: 1607, top: 594.64, width: 102, zIndex: 3, textAlign: "right" as const },
 ]
 
 const labels = ["Upsell All", "Cross-Sell", "Subscription Widget"]
@@ -90,7 +93,9 @@ function useFitScale(ref: React.RefObject<HTMLDivElement | null>) {
         const measure = () => {
             const rect = el.getBoundingClientRect()
             if (rect.width <= 0 || rect.height <= 0) return
-            setScale(Math.min(rect.width / DESIGN_WIDTH, rect.height / DESIGN_HEIGHT))
+            const availableWidth = Math.max(0, rect.width - SHADOW_GUTTER * 2)
+            const availableHeight = Math.max(0, rect.height - SHADOW_GUTTER * 2)
+            setScale(Math.min(availableWidth / DESIGN_WIDTH, availableHeight / DESIGN_HEIGHT))
         }
 
         measure()
@@ -106,8 +111,8 @@ function ToggleSelector({ color }: { color: string }) {
     return (
         <div
             style={{
-                height: 37,
-                width: 37,
+                height: 22,
+                width: 22,
                 position: "relative",
                 borderRadius: 33.16,
                 overflow: "hidden",
@@ -127,9 +132,9 @@ function ToggleSelector({ color }: { color: string }) {
                     style={{
                         position: "absolute",
                         height: "80%",
-                        width: "44.32%",
+                        width: "44.55%",
                         top: "10%",
-                        right: "5.68%",
+                        right: "5.45%",
                         bottom: "10%",
                         left: "50%",
                         boxShadow: "0px 1.8421878814697266px 7.37px rgba(25, 29, 72, 0.2)",
@@ -152,7 +157,7 @@ function LegendElement({ color, children, gap = 14.7 }: { color: string; childre
                     style={{
                         alignSelf: "stretch",
                         position: "relative",
-                        lineHeight: "36.84px",
+                        lineHeight: "22px",
                         flexShrink: 0,
                     }}
                 >
@@ -162,6 +167,7 @@ function LegendElement({ color, children, gap = 14.7 }: { color: string; childre
                     style={{
                         width: 2571.7,
                         position: "relative",
+                        fontSize: 25.79,
                         lineHeight: "36.84px",
                         color: "#6e7381",
                         display: "none",
@@ -171,6 +177,35 @@ function LegendElement({ color, children, gap = 14.7 }: { color: string; childre
                     Optional element-level helper text lorem ipsum dolor sit.
                 </div>
                 <div style={{ width: 2571.7, height: 29.5, position: "relative", display: "none", flexShrink: 0 }} />
+            </div>
+        </div>
+    )
+}
+
+function Frame3860Legend() {
+    return (
+        <div
+            style={{
+                width: "100%",
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-end",
+                textAlign: "left",
+                fontSize: 22,
+                color: INK,
+                fontFamily: "Avenir, Arial, sans-serif",
+            }}
+        >
+            <div style={{ display: "flex", alignItems: "flex-start", gap: 24 }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+                    <LegendElement color={ACCENT}>Guided wizard</LegendElement>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+                    <LegendElement color="#9C80F8" gap={8}>
+                        Canvas builder
+                    </LegendElement>
+                </div>
             </div>
         </div>
     )
@@ -286,13 +321,13 @@ export default function AnimatedBarChart(props: AnimatedBarChartProps) {
                         height: "100%",
                         position: "relative",
                         boxShadow: "0px 1.8421878814697266px 7.37px rgba(25, 29, 72, 0.2)",
-                        borderRadius: 22.11,
+                        borderRadius: CARD_RADIUS,
                         backgroundColor: background,
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
-                        justifyContent: "center",
-                        padding: "36px 36px 48px",
+                        justifyContent: "flex-start",
+                        padding: 36,
                         boxSizing: "border-box",
                         isolation: "isolate",
                         gap: 18.4,
@@ -308,33 +343,14 @@ export default function AnimatedBarChart(props: AnimatedBarChartProps) {
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "flex-start",
-                            gap: 56,
+                            gap: 32,
                             zIndex: 0,
                             flexShrink: 0,
                             fontSize: 25.79,
                             color: INK,
                         }}
                     >
-                        <div
-                            style={{
-                                alignSelf: "stretch",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "flex-end",
-                                flexShrink: 0,
-                            }}
-                        >
-                            <div style={{ display: "flex", alignItems: "flex-start", gap: 24 }}>
-                                <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-                                    <LegendElement color={ACCENT}>Guided wizard</LegendElement>
-                                </div>
-                                <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-                                    <LegendElement color="#9C80F8" gap={8}>
-                                        Canvas builder
-                                    </LegendElement>
-                                </div>
-                            </div>
-                        </div>
+                        <Frame3860Legend />
 
                         <div
                             style={{
@@ -429,7 +445,7 @@ export default function AnimatedBarChart(props: AnimatedBarChartProps) {
                                                         height: bar.height,
                                                         width: bar.width,
                                                         position: "relative",
-                                                        borderRadius: "3.68px 3.68px 0 0",
+                                                        borderRadius: `${BAR_RADIUS}px ${BAR_RADIUS}px 0 0`,
                                                         backgroundColor: bar.color,
                                                         transformOrigin: "bottom center",
                                                         willChange: "transform",

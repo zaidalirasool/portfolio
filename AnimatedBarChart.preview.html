@@ -12,7 +12,8 @@
       --canvas: #9680e0;
       --sticker: #d63333;
       --design-width: 2004;
-      --design-height: 678.2;
+      --design-height: 654.64;
+      --shadow-gutter: 16;
       --scale: 1;
     }
 
@@ -39,7 +40,7 @@
 
     .scale {
       width: 2004px;
-      height: 678.2px;
+      height: 654.64px;
       position: absolute;
       left: 50%;
       top: 50%;
@@ -52,13 +53,13 @@
       height: 100%;
       position: relative;
       box-shadow: 0px 1.8421878814697266px 7.37px rgba(25, 29, 72, 0.2);
-      border-radius: 22.11px;
+      border-radius: 8px;
       background-color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 36px 36px 48px;
+      justify-content: flex-start;
+      padding: 36px;
       isolation: isolate;
       gap: 18.4px;
       text-align: left;
@@ -71,19 +72,23 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 56px;
+      gap: 32px;
       z-index: 0;
       flex-shrink: 0;
       font-size: 25.79px;
       color: var(--ink);
     }
 
-    .frameWrapper {
-      align-self: stretch;
+    .legendFrameParent {
+      width: 100%;
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      flex-shrink: 0;
+      text-align: left;
+      font-size: 22px;
+      color: var(--ink);
+      font-family: Avenir, Arial, sans-serif;
     }
 
     .frameGroup {
@@ -111,8 +116,8 @@
     }
 
     .toggleSelector {
-      height: 37px;
-      width: 37px;
+      height: 22px;
+      width: 22px;
       position: relative;
       border-radius: 33.16px;
       overflow: hidden;
@@ -139,9 +144,9 @@
     .rectangle10Copy32 {
       position: absolute;
       height: 80%;
-      width: 44.32%;
+      width: 44.55%;
       top: 10%;
-      right: 5.68%;
+      right: 5.45%;
       bottom: 10%;
       left: 50%;
       box-shadow: 0px 1.8421878814697266px 7.37px rgba(25, 29, 72, 0.2);
@@ -159,7 +164,7 @@
     .guidedWizard {
       align-self: stretch;
       position: relative;
-      line-height: 36.84px;
+      line-height: 22px;
       flex-shrink: 0;
     }
 
@@ -172,6 +177,7 @@
     }
 
     .optionalElementLevelHelper {
+      font-size: 25.79px;
       line-height: 36.84px;
       color: #6e7381;
     }
@@ -308,7 +314,7 @@
     .barChild3 {
       width: 156px;
       position: relative;
-      border-radius: 3.68px 3.68px 0 0;
+      border-radius: 8px 8px 0 0;
       transform-origin: bottom center;
       transform: scaleY(0);
       animation: grow-up 1700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -439,7 +445,7 @@
       height: 24px;
       position: absolute;
       margin: 0;
-      top: 635px;
+      top: 594.64px;
       line-height: 24px;
       font-weight: 900;
       display: inline-block;
@@ -527,7 +533,7 @@
     <div class="scale" id="scale">
       <main class="graph">
         <div class="frameParent">
-          <div class="frameWrapper">
+          <div class="legendFrameParent">
             <div class="frameGroup">
               <div class="toggleSelectorListElementWrapper">
                 <div class="toggleSelectorListElement">
@@ -612,7 +618,9 @@
     const viewport = document.getElementById("viewport")
     const setScale = () => {
       const rect = viewport.getBoundingClientRect()
-      const scale = Math.min(rect.width / 2004, rect.height / 678.2)
+      const availableWidth = Math.max(0, rect.width - 32)
+      const availableHeight = Math.max(0, rect.height - 32)
+      const scale = Math.min(availableWidth / 2004, availableHeight / 654.64)
       document.documentElement.style.setProperty("--scale", scale)
     }
 
